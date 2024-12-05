@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zeno's Paradox Animation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #141e30, #243b55);
+        font-family: "Arial", sans-serif;
+        color: #fff;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .track {
+        position: relative;
+        width: 80%;
+        height: 150px;
+        margin: 0 auto;
+        background: #2c3e50;
+        border-radius: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+
+      .runner,
+      .tortoise {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 70px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: left 0.5s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .runner {
+        background: #ff6b6b;
+        color: #fff;
+      }
+
+      .tortoise {
+        background: #6bc1ff;
+        color: #fff;
+      }
+
+      .label {
+        margin: 20px 0;
+        font-size: 22px;
+        font-weight: bold;
+        color: #f8f9fa;
+      }
+
+      .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #00bd2c;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #e05555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="track">
+        <div class="runner">Achilles</div>
+        <div class="tortoise">Tortoise</div>
+      </div>
+      <div class="label">Zeno's Paradox: Achilles and the Tortoise</div>
+      <button class="btn" onclick="restartAnimation()">Run Again</button>
+    </div>
+
+    <script>
+      const runner = document.querySelector(".runner");
+      const tortoise = document.querySelector(".tortoise");
+
+      let tortoisePosition, runnerPosition;
+
+      function animateZeno() {
+        const trackWidth = document.querySelector(".track").clientWidth;
+
+        let distance = tortoisePosition - runnerPosition;
+
+        if (distance < 1) {
+          runner.style.left = `${(runnerPosition / 100) * trackWidth}px`;
+          tortoise.style.left = `${(tortoisePosition / 100) * trackWidth}px`;
+          console.log("Paradoxo demonstrado!");
+          return;
+        }
+
+        runnerPosition += distance / 2;
+
+        tortoisePosition += distance / 4;
+
+        runner.style.left = `${(runnerPosition / 100) * trackWidth}px`;
+        tortoise.style.left = `${(tortoisePosition / 100) * trackWidth}px`;
+
+        setTimeout(animateZeno, 500);
+      }
+
+      function restartAnimation() {
+        tortoisePosition = 30;
+        runnerPosition = 0;
+
+        runner.style.left = "0px";
+        tortoise.style.left = "30%";
+
+        animateZeno();
+      }
+
+      restartAnimation();
+    </script>
+  </body>
+</html>

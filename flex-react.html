@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Layout</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: stretch;
+      }
+
+      .container {
+        display: grid;
+        grid-template-areas:
+          "header header header"
+          "hero main main"
+          "sidebar main main"
+          "sidebar extra extra"
+          "related-images related-images related-posts"
+          "footer footer footer";
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto 1fr 1fr auto auto auto;
+        gap: 10px;
+        width: 100%;
+        height: 100vh; /* Ocupa toda a altura da tela */
+        padding: 10px;
+      }
+
+      .header {
+        grid-area: header;
+        background-color: #add8e6;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .hero {
+        grid-area: hero;
+        background-color: #d8bfd8;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .main-content {
+        grid-area: main;
+        background-color: #f0e68c;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .sidebar {
+        grid-area: sidebar;
+        background-color: #98fb98;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .extra-content {
+        grid-area: extra;
+        background-color: #d3d3d3;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .related-images {
+        grid-area: related-images;
+        background-color: #90ee90;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .related-posts {
+        grid-area: related-posts;
+        background-color: #ffb6c1;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: #ffa07a;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Header</div>
+      <div class="hero">Hero</div>
+      <div class="main-content">Main Content</div>
+      <div class="sidebar">Sidebar</div>
+      <div class="extra-content">Extra Content</div>
+      <div class="related-images">Related Images</div>
+      <div class="related-posts">Related Posts</div>
+      <div class="footer">Footer</div>
+    </div>
+  </body>
+</html>
